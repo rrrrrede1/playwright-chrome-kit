@@ -18,20 +18,19 @@ project/
 └── README.md
    ```
    
-这个项目结构现在包含了：
+这个项目现在包含了：
 - 便携版原版 Google Chrome（不是 Chromium）
 - 独立的用户数据目录
-- 简单的启动脚本
-- Conda 环境配置（包含 Playwright）
-- 详细的使用说明
-- 通过 GitHub Actions 自动更新
+- 启动脚本
+- Conda 环境配置文件（包含 Playwright）
+- 使用样例
 
 GitHub Actions 会：
 - 每周自动更新 Chrome 到最新版本
 - 保持 Playwright 和其他依赖的更新
 - 生成新的便携版 Chrome 包
 
-您可以直接使用这个模板来开发基于 **Chrome** 的自动化脚本
+您可以直接使用这个模板来开发基于 **原版 Google Chrome** 的自动化脚本
 
 ## 使用说明
 
@@ -43,7 +42,6 @@ GitHub Actions 会：
    ```bash
    conda env create -f environment.yml
    conda activate chrome-automation
-   playwright install chromium
    ```
 
 ## 注意事项
