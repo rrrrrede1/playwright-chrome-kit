@@ -48,3 +48,20 @@ jobs:
           name: ${{ env.BUILD_NAME }}
           path: build/release/*
           retention-days: 15
+
+      - name: Build Package Folder
+        run: |
+          mkdir -p build/package
+          cp -r application build/package/
+          cp environment.yml *.py README.md build/package/
+          cd build
+          zip -r release.zip package
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Playwright Chrome Kit Release - v1.0.${{ github.run_number }}
+          tag_name: playwright-chrome-kit-v1.0.${{ github.run_number }}
+          files: build/release.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
