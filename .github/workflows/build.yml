@@ -1,0 +1,42 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: "0 8 * * 1"
+
+jobs:
+  Warp_Chrome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Conda
+        uses: conda-forge/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: '3.10'
+          environment-file: environment.yml
+          auto-activate-base: false
+          activate-environment: chrome-automation
+      
+      - name: Install Dependencies
+        run: |
+          conda info
+          conda list
+          python -m pip install --upgrade pip
+          python -m playwright install
+      
+      - name: Build Chrome Package
+        run: python run.py
+      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.BUILD_NAME }}
+          path: build/release/*
+          retention-days: 15
