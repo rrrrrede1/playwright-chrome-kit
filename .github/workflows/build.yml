@@ -11,6 +11,8 @@ on:
 
 jobs:
   Warp_Chrome:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -65,5 +67,3 @@ jobs:
           tag_name: playwright-chrome-kit-v1.0.${{ github.run_number }}
           files: build/release.zip
           token: ${{ secrets.GITHUB_TOKEN }}
-        permissions:
-          contents: write
