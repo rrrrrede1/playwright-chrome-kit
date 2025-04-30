@@ -38,9 +38,10 @@ os.makedirs('build/release/application/UserData', exist_ok=True)
 with open("chrome.7z.exe", "wb") as file:
     file.write(response.content)
 
-os.system('chmod +x ./7zzs')
-os.system('./7zzs x chrome.7z.exe')
-os.system('./7zzs x chrome.7z')
+# 使用 p7zip 替代 7zzs
+os.system('sudo apt-get update && sudo apt-get install -y p7zip-full')
+os.system('7z x chrome.7z.exe')
+os.system('7z x chrome.7z')
 
 # 获取Chrome版本号
 version = '0.0.0.0'

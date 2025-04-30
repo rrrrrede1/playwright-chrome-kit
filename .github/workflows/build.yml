@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash -l {0}  # 确保 conda 环境正确激活
+        shell: bash -l {0}
     steps:
       - uses: actions/checkout@v4
 
@@ -27,7 +27,12 @@ jobs:
           activate-environment: chrome-automation
           auto-activate-base: false
 
-      - name: Install Dependencies
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full
+
+      - name: Install Python Dependencies
         run: |
           conda info
           conda list
