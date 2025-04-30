@@ -52,7 +52,7 @@ jobs:
       - name: Build Package Folder
         run: |
           mkdir -p build/package
-          cp -r application build/package/
+          cp -r build/release/application build/package/
           cp environment.yml *.py README.md build/package/
           cd build
           zip -r release.zip package
