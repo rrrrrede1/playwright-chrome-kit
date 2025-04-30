@@ -59,9 +59,11 @@ jobs:
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
+        if: github.event_name != 'pull_request'
         with:
           name: Playwright Chrome Kit Release - v1.0.${{ github.run_number }}
           tag_name: playwright-chrome-kit-v1.0.${{ github.run_number }}
           files: build/release.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+        permissions:
+          contents: write
