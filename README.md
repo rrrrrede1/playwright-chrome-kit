@@ -1,6 +1,7 @@
 # Google Chrome + Playwright 自动化环境包
 
 这是一个集成了便携版 Google Chrome 和 Playwright 自动化环境的项目模板。
+
 使用了 https://github.com/rrrrrede1/Google-Chrome-Portable 的自动封装方法。
 
 ## 项目结构
